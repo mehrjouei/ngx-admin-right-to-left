@@ -8,12 +8,12 @@ import { AnalyticsService } from '../../../@core/utils/analytics.service';
   styleUrls: ['./theme-switcher.component.scss'],
   template: `
     <label class="theme-switch">
-      <span class="light">Light</span>
+      <span class="light">روشن</span>
       <div class="switch">
         <input type="checkbox" [checked]="currentBoolTheme()" (change)="toggleTheme(theme.checked)" #theme>
         <span class="slider"></span>
       </div>
-      <span class="cosmic">Cosmic</span>
+      <span class="cosmic">تیره</span>
     </label>
   `,
 })
@@ -25,7 +25,10 @@ export class ThemeSwitcherComponent implements OnInit {
 
   ngOnInit() {
     this.themeService.getJsTheme()
-      .subscribe((theme: NbJSThemeOptions) => this.theme = theme);
+      .subscribe((theme: NbJSThemeOptions) =>{
+        this.theme = theme;
+      });
+      this.themeService.changeTheme('default');
   }
 
   toggleTheme(theme: boolean) {
